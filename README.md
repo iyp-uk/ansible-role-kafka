@@ -18,7 +18,7 @@ See [defaults/main.yml](defaults/main.yml).
 Dependencies
 ------------
 
-There's a dependency on Java being installed.
+There's a dependency on Java being installed, but it's not enforced by the role.
 
 > Refer to [geerlingguy/ansible-role-java](https://github.com/geerlingguy/ansible-role-java) for an Ansible Java role.
 
