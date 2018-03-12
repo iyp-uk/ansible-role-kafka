@@ -1,0 +1,10 @@
+# {{ansible_managed}}
+
+KAFKA_HEAP_OPTS={{ kafka_heap_opts }}
+LOG_DIR={{ kafka_log_dir }}
+
+{% if kafka_env is defined and kafka_env != {} %}
+{% for key, value in kafka_env.iteritems() %}
+{{key}}={{value}}
+{% endfor %}
+{% endif %}

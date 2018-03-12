@@ -1,0 +1,8 @@
+---
+- name: "Configure kafka"
+  template: src=config/{{ item }}.j2 dest={{ kafka_dir }}/config/{{ item }} owner=kafka group=kafka
+  with_items:
+    - server.properties
+    - log4j.properties
+  notify:
+    - restart kafka

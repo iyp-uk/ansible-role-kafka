@@ -1,0 +1,86 @@
+# {{ansible_managed}}
+# Refer to https://raw.githubusercontent.com/apache/kafka/1.0.0/config/log4j.properties for original
+
+# Unspecified loggers and loggers with additivity=true output to server.log and stdout
+# Note that INFO only applies to unspecified loggers, the log level of the child logger is used otherwise
+log4j.rootLogger={{ kafka_config.log4j.log4j_rootLogger }}
+
+log4j.appender.stdout={{ kafka_config.log4j.log4j_appender_stdout.class }}
+log4j.appender.stdout.layout={{ kafka_config.log4j.log4j_appender_stdout.layout.class }}
+log4j.appender.stdout.layout.ConversionPattern={{ kafka_config.log4j.log4j_appender_stdout.layout.conversion_pattern }}
+
+log4j.appender.kafkaAppender={{ kafka_config.log4j.log4j_appender_kafka_appender.class }}
+log4j.appender.kafkaAppender.DatePattern={{ kafka_config.log4j.log4j_appender_kafka_appender.date_pattern }}
+log4j.appender.kafkaAppender.File={{ kafka_config.log4j.log4j_appender_kafka_appender.file }}
+log4j.appender.kafkaAppender.layout={{ kafka_config.log4j.log4j_appender_kafka_appender.layout.class }}
+log4j.appender.kafkaAppender.layout.ConversionPattern={{ kafka_config.log4j.log4j_appender_kafka_appender.layout.conversion_pattern }}
+
+log4j.appender.stateChangeAppender={{ kafka_config.log4j.log4j_appender_state_change_appender.class }}
+log4j.appender.stateChangeAppender.DatePattern={{ kafka_config.log4j.log4j_appender_state_change_appender.date_pattern }}
+log4j.appender.stateChangeAppender.File={{ kafka_config.log4j.log4j_appender_state_change_appender.file }}
+log4j.appender.stateChangeAppender.layout={{ kafka_config.log4j.log4j_appender_state_change_appender.layout.class }}
+log4j.appender.stateChangeAppender.layout.ConversionPattern={{ kafka_config.log4j.log4j_appender_state_change_appender.layout.conversion_pattern }}
+
+log4j.appender.requestAppender={{ kafka_config.log4j.log4j_appender_request_appender.class }}
+log4j.appender.requestAppender.DatePattern={{ kafka_config.log4j.log4j_appender_request_appender.date_pattern }}
+log4j.appender.requestAppender.File={{ kafka_config.log4j.log4j_appender_request_appender.file }}
+log4j.appender.requestAppender.layout={{ kafka_config.log4j.log4j_appender_request_appender.layout.class }}
+log4j.appender.requestAppender.layout.ConversionPattern={{ kafka_config.log4j.log4j_appender_request_appender.layout.conversion_pattern }}
+
+log4j.appender.cleanerAppender={{ kafka_config.log4j.log4j_appender_cleaner_appender.class }}
+log4j.appender.cleanerAppender.DatePattern={{ kafka_config.log4j.log4j_appender_cleaner_appender.date_pattern }}
+log4j.appender.cleanerAppender.File={{ kafka_config.log4j.log4j_appender_cleaner_appender.file }}
+log4j.appender.cleanerAppender.layout={{ kafka_config.log4j.log4j_appender_cleaner_appender.layout.class }}
+log4j.appender.cleanerAppender.layout.ConversionPattern={{ kafka_config.log4j.log4j_appender_cleaner_appender.layout.conversion_pattern }}
+
+log4j.appender.controllerAppender={{ kafka_config.log4j.log4j_appender_controller_appender.class }}
+log4j.appender.controllerAppender.DatePattern={{ kafka_config.log4j.log4j_appender_controller_appender.date_pattern }}
+log4j.appender.controllerAppender.File={{ kafka_config.log4j.log4j_appender_controller_appender.file }}
+log4j.appender.controllerAppender.layout={{ kafka_config.log4j.log4j_appender_controller_appender.layout.class }}
+log4j.appender.controllerAppender.layout.ConversionPattern={{ kafka_config.log4j.log4j_appender_controller_appender.layout.conversion_pattern }}
+
+log4j.appender.authorizerAppender={{ kafka_config.log4j.log4j_appender_authorizer_appender.class }}
+log4j.appender.authorizerAppender.DatePattern={{ kafka_config.log4j.log4j_appender_authorizer_appender.date_pattern }}
+log4j.appender.authorizerAppender.File={{ kafka_config.log4j.log4j_appender_authorizer_appender.file }}
+log4j.appender.authorizerAppender.layout={{ kafka_config.log4j.log4j_appender_authorizer_appender.layout.class }}
+log4j.appender.authorizerAppender.layout.ConversionPattern={{ kafka_config.log4j.log4j_appender_authorizer_appender.layout.conversion_pattern }}
+
+# Change the two lines below to adjust ZK client logging
+log4j.logger.org.I0Itec.zkclient.ZkClient={{ kafka_config.log4j.log4j_logger_org_I0Itec_zkclient_ZkClient }}
+log4j.logger.org.apache.zookeeper={{ kafka_config.log4j.log4j_logger_org_apache_zookeeper }}
+
+# Change the two lines below to adjust the general broker logging level (output to server.log and stdout)
+log4j.logger.kafka={{ kafka_config.log4j.log4j_logger_kafka }}
+log4j.logger.org.apache.kafka={{ kafka_config.log4j.log4j_logger_org_apache_kafka }}
+
+# Change to DEBUG or TRACE to enable request logging
+log4j.logger.kafka.request.logger={{ kafka_config.log4j.log4j_logger_kafka_request_logger }}
+log4j.additivity.kafka.request.logger={{ kafka_config.log4j.log4j_additivity_kafka_request_logger }}
+
+# Uncomment the lines below and change log4j.logger.kafka.network.RequestChannel$ to TRACE for additional output
+# related to the handling of requests
+#log4j.logger.kafka.network.Processor=TRACE, requestAppender
+#log4j.logger.kafka.server.KafkaApis=TRACE, requestAppender
+#log4j.additivity.kafka.server.KafkaApis=false
+log4j.logger.kafka.network.RequestChannel$={{ kafka_config.log4j.log4j_logger_kafka_network_RequestChannel }}
+log4j.additivity.kafka.network.RequestChannel$={{ kafka_config.log4j.log4j_additivity_kafka_network_RequestChannel }}
+
+log4j.logger.kafka.controller={{ kafka_config.log4j.log4j_logger_kafka_controller }}
+log4j.additivity.kafka.controller={{ kafka_config.log4j.log4j_additivity_kafka_controller }}
+
+log4j.logger.kafka.log.LogCleaner={{ kafka_config.log4j.log4j_logger_kafka_log_LogCleaner }}
+log4j.additivity.kafka.log.LogCleaner={{ kafka_config.log4j.log4j_additivity_kafka_log_LogCleaner }}
+
+log4j.logger.state.change.logger={{ kafka_config.log4j.log4j_logger_state_change_logger }}
+log4j.additivity.state.change.logger={{ kafka_config.log4j.log4j_additivity_state_change_logger }}
+
+# Access denials are logged at INFO level, change to DEBUG to also log allowed accesses
+log4j.logger.kafka.authorizer.logger={{ kafka_config.log4j.log4j_logger_kafka_authorizer_logger }}
+log4j.additivity.kafka.authorizer.logger={{ kafka_config.log4j.log4j_additivity_kafka_authorizer_logger }}
+
+{% if kafka_config.log4j.custom_settings is defined and kafka_config.log4j.custom_settings != {} %}
+############################# Custom Settings #############################
+{% for key, value in kafka_config.log4j.custom_settings.items() | sort %}
+{{key}}={{value}}
+{% endfor %}
+{% endif %}

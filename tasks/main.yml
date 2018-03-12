@@ -1,2 +1,4 @@
 ---
-# tasks file for intelematics.kafka
+- include: setup.yml
+- include: config.yml
+- service: name=kafka state=started enabled=yes

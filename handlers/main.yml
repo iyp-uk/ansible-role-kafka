@@ -1,2 +1,6 @@
 ---
-# handlers file for intelematics.kafka
+- name: restart kafka
+  service: name=kafka state=restarted
+
+- name: reload systemctl daemon
+  command: systemctl daemon-reload
