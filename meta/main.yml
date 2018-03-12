@@ -4,6 +4,10 @@ galaxy_info:
   company: IYP UK
   license: license (MIT)
   min_ansible_version: 1.2
+  platforms:
+  - name: Ubuntu
+    versions:
+    - xenial
   galaxy_tags:
     - kafka
 
